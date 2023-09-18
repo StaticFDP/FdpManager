@@ -1,0 +1,37 @@
+async function getSiteData (repos, subdomains) {
+  const sites = []
+  for (const type of Fs.readdirSync(repos, { withFileTypes: true })) {
+    const typeDir = Path.join(repos, type.name);
+    for (const org of Fs.readdirSync(typeDir, { withFileTypes: true })) {
+      const orgDir = Path.join(typeDir, org.name);
+      for (const repo of Fs.readdirSync(orgDir, { withFileTypes: true })) {
+        const repoDir = Path.join(orgDir, repo.name);
+        const repository = await NodeGit.Repository.open(repoDir);
+        const head = await repository.getHeadCommit( );
+        sites.push({
+          type: type.name,
+          org: org.name,
+          repo: repo.name,
+          date: head.date(),
+          who: head.committer().name(),
+          hash: head.sha(),
+        });
+      }
+    }
+  }
+  return sites;
+  return [
+    { type: 'github', org: 'StaticFDP', repo: 'wikidata', 
+      date: "2023-09-17T15:52:53.000Z",
+      who: "Eric Prud'hommeaux",
+      hash: "ec9fda18b78f0daff6904a53307e14f8807c5da8"
+    },
+    { type: 'github', org: 'StaticFDP', repo: 'FlashCard1', 
+      date: "2023-09-17T15:52:53.001Z",
+      who: "Eric Prud'hommeaux",
+      hash: "ec9fda18b78f0daff6904a53307e14f8807c5da9"
+    },
+  ];
+}
+
+module.exports = {getSiteData};

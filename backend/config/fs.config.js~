@@ -1,0 +1,6 @@
+const ROOT = "/tmp/checkouts/bezkoder/vue-js-node-js-express-mysql/root/";
+
+module.exports = {
+  sites: ROOT = "home/fdpCloud/sites/",
+  subdomains: ROOT = "etc/apache2/sites-available/subdomains.d",
+};
