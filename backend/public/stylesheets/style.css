@@ -32,6 +32,14 @@ th, td {
     vertical-align:top;
 }
 
+.repo {
+    background-color: #ffd
+}
+
+.commit {
+    background-color: #dff
+}
+
 td {
     text-align: left;
 }

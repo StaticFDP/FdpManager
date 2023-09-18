@@ -6,26 +6,26 @@ block content
   div
     table
       tr
-        th(colspan="3") repo
-        th(colspan="3") last commit
+        th.repo(colspan="3") repo
+        th.commit(colspan="3") last commit
       tr
-        th type
-        th org
-        th name
-        th when
-        th who
-        th hash
+        th.repo type
+        th.repo org
+        th.repo name
+        th.commit when
+        th.commit who
+        th.commit hash
       - for (let i = 0; i < sites.length; i++) {
         - const {type, org, repo, dateTime, who, hash} = sites[i];
         - const explore = siteRoot + type + '/' + org + '/' + repo;
         - const [date, time] = dateTime.toISOString().split('T');
         tr
-          td #{type}
-          td #{org}
-          td #{repo}
-          td #{date} #{time}
-          td #{who}
-          td #{hash.substring(0, 7)}
+          td.repo #{type}
+          td.repo #{org}
+          td.repo #{repo}
+          td.commit #{date} #{time}
+          td.commit #{who}
+          td.commit #{hash.substring(0, 7)}
           td #[a(href="#{explore}") explore]
           td 🗑
       - }
